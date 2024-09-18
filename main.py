@@ -35,7 +35,9 @@ def main_02():
     stock_data = dd.fetch_stock_data(ticker, period)
 
     # Вычислить среднее значение колонки 'Close'. Результат будет выводиться в консоль.
-    dd.calculate_and_display_average_price(stock_data)
+    print('Средняя цена закрытия акций за заданный период: ', dd.calculate_and_display_average_price(stock_data))
+    # Уведомление о сильных колебаниях
+    dd.notify_if_strong_fluctuations(stock_data, 0.5)
 
     # Add moving average to the data
     # stock_data = dd.add_moving_average(stock_data)
