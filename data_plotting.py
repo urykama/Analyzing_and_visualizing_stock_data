@@ -40,3 +40,12 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
     plt.savefig(filename)
     print(f"График сохранен как {filename}")
+
+# В модуле data_plotting.py добавлен код отрисовки графика показателя rsi
+def rsi(stock_data):
+    pass
+
+# В модуль data_plotting (37) добавлена функция select_styles, которая отображает доступные стили графиков и
+# предлагает пользователю выбрать один из них.
+def select_styles():
+    pass

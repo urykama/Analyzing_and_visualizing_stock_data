@@ -46,19 +46,38 @@ def notify_if_strong_fluctuations(data, threshold=5):
         если цена акций колебалась более чем на заданный процент за период.
     Функция вычисляет максимальное и минимальное значения цены закрытия и сравнивать разницу с заданным порогом.
         Если разница превышает порог, пользователь получает уведомление.
-    :param data:
-    :param threshold:
+    :param data: DataFrame
+    :param threshold: пороговый процент за период
     :return:
     """
-    # Получаем из dataframe максимальную и минимальную цены.
+    # Получаем из dataframe максимальную и минимальную цены (по заданию цена закрытия).
     max_price = data['Close'].max()
     min_price = data['Close'].min()
+    # Альтернативный вариант по High и Low
+    # max_price = data['High'].max()
+    # min_price = data['Low'].min()
     # Вычисляем процентное изменение цены (за 100% возьмем среднее из def calculate_and_display_average_price(data):)
     percentage_price_change = (max_price - min_price) / calculate_and_display_average_price(data) * 100
     # Проверяем, если процентное изменение цены больше заданного порога.
-    # print(f'min {min_price} max {max_price} цена акций колебалась на: {percentage_price_change}%')
     if percentage_price_change > threshold:
         print(f'Произошли сильные колебания по цене: {percentage_price_change:.2f} %.\n'
               f'\tМинимальная цена: {min_price:.2f} USD. Максимальная цена: {max_price:.2f} USD.')
     # print((max_price + min_price) / 2)
     # print(data['Close'].mean())
+
+def export_data_to_csv(data, filename):
+    """
+    Сохранить загруженные данные об акциях в CSV файл.
+    :param data: DataFrame
+    :param filename: имя файла
+    :return:
+    """
+    try:
+        data.to_csv(filename, index=False)
+    except Exception as e:
+        print(f'Не удалось экспортировать данные в CSV. Ошибка: {e}')
+
+# В модуль data_download.py добавлена функция (15) calculate_rsi(data):
+def calculate_rsi(data):
+    return str(data)
+

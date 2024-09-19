@@ -37,6 +37,7 @@ def main_02():
     # Вычислить среднее значение колонки 'Close'. Результат будет выводиться в консоль.
     print('Средняя цена закрытия акций за заданный период: ', dd.calculate_and_display_average_price(stock_data))
     # Уведомление о сильных колебаниях
+
     threshold = float(input("Уведомление о сильных колебаниях. Введите порог колебания цен в процентах: "))
     dd.notify_if_strong_fluctuations(stock_data, threshold)
 
@@ -45,6 +46,11 @@ def main_02():
 
     # Plot the data
     # dplt.create_and_save_plot(stock_data, ticker, period)
+    # В модуль main.py добавлен вызов (24) dd.calculate_rsi(stock_data)
+    dd.calculate_rsi(stock_data)
+    filename = 'stock_data.csv'
+    # filename = 'stock_data'
+    dd.export_data_to_csv(stock_data, filename)
 
 if __name__ == "__main__":
     # main()
