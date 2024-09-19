@@ -40,7 +40,7 @@ def calculate_and_display_average_price(data):
     return data['Close'].mean()
 
 
-def notify_if_strong_fluctuations(data, threshold):
+def notify_if_strong_fluctuations(data, threshold=5):
     """
     Функция, которая анализирует данные и уведомляет пользователя,
         если цена акций колебалась более чем на заданный процент за период.
@@ -56,10 +56,9 @@ def notify_if_strong_fluctuations(data, threshold):
     # Вычисляем процентное изменение цены (за 100% возьмем среднее из def calculate_and_display_average_price(data):)
     percentage_price_change = (max_price - min_price) / calculate_and_display_average_price(data) * 100
     # Проверяем, если процентное изменение цены больше заданного порога.
-    print(f'min {min_price} max {max_price} цена акций колебалась на: {percentage_price_change}%')
+    # print(f'min {min_price} max {max_price} цена акций колебалась на: {percentage_price_change}%')
     if percentage_price_change > threshold:
-        print(f'Произошли сильные колебания по цене: {percentage_price_change:.2f}%.\n'
+        print(f'Произошли сильные колебания по цене: {percentage_price_change:.2f} %.\n'
               f'\tМинимальная цена: {min_price:.2f} USD. Максимальная цена: {max_price:.2f} USD.')
-
-    print((max_price + min_price) / 2)
-    print(data['Close'].mean())
+    # print((max_price + min_price) / 2)
+    # print(data['Close'].mean())
