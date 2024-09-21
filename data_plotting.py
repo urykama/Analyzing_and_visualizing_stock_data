@@ -111,19 +111,14 @@ def probe():
 
     # add x-axis label
     ax.set_xlabel('Year', fontsize=14)
-
     # add y-axis label
     ax.set_ylabel('Sales', color=col1, fontsize=16)
-
     # define second y-axis that shares x-axis with current plot
     ax2 = ax.twinx()
-
     # add second line to plot
     ax2.plot(df2.year, df2.leads, color=col2)
-
     # add second y-axis label
     ax2.set_ylabel('Leads', color=col2, fontsize=16)
-
     plt.savefig("stock_price_chart.png")
 
 
