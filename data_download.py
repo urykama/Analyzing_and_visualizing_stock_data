@@ -1,4 +1,5 @@
 """Отвечает за загрузку данных об акциях."""
+import pandas as pd
 import yfinance as yf
 
 
@@ -65,6 +66,7 @@ def notify_if_strong_fluctuations(data, threshold=5):
     # print((max_price + min_price) / 2)
     # print(data['Close'].mean())
 
+
 def export_data_to_csv(data, filename):
     """
     Сохранить загруженные данные об акциях в CSV файл.
@@ -77,7 +79,29 @@ def export_data_to_csv(data, filename):
     except Exception as e:
         print(f'Не удалось экспортировать данные в CSV. Ошибка: {e}')
 
-# В модуль data_download.py добавлена функция (15) calculate_rsi(data):
-def calculate_rsi(data):
-    return str(data)
 
+# В модуль data_download.py добавлена функция (15) calculate_rsi(data):
+def calculate_rsi(data, period=12):
+    delta = data['Close'].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
+    rs = gain / loss
+    rsi = 100 - (100 / (1 + rs))
+    return rsi
+
+
+if __name__ == "__main__":
+    # Пример использования
+    # Загрузите данные в DataFrame
+    # df = pd.read_csv('your_data.csv')  # Замените на ваш файл
+
+    # Пример данных (замените на свои)
+    data = {
+        'Close': [46, 47, 45, 48, 49, 50, 52, 51, 53, 54, 53, 52, 50, 51, 52]
+    }
+    df = pd.DataFrame(data)
+
+    # Рассчитайте RSI
+    df['RSI'] = calculate_rsi(df)
+
+    print(df)

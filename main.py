@@ -38,11 +38,11 @@ def main_02():
     print('Средняя цена закрытия акций за заданный период: ', dd.calculate_and_display_average_price(stock_data))
     # Уведомление о сильных колебаниях
 
-    threshold = float(input("Уведомление о сильных колебаниях. Введите порог колебания цен в процентах: "))
-    dd.notify_if_strong_fluctuations(stock_data, threshold)
+    # threshold = float(input("Уведомление о сильных колебаниях. Введите порог колебания цен в процентах: "))
+    # dd.notify_if_strong_fluctuations(stock_data, threshold)
 
     # Add moving average to the data
-    # stock_data = dd.add_moving_average(stock_data)
+    stock_data = dd.add_moving_average(stock_data)
 
     # Plot the data
     # dplt.create_and_save_plot(stock_data, ticker, period)
@@ -51,6 +51,12 @@ def main_02():
     filename = 'stock_data.csv'
     # filename = 'stock_data'
     dd.export_data_to_csv(stock_data, filename)
+    stock_data['RSI'] = dd.calculate_rsi(stock_data)
+    # print(dd.calculate_rsi(stock_data))
+    print(stock_data)
+    # Plot the data
+    dplt.create_and_save_plot(stock_data, ticker, period)
+
 
 if __name__ == "__main__":
     # main()
