@@ -11,6 +11,6 @@
 
 Результат:
 
-В модуль data_download.py добавлена функция (15) calculate_rsi(data):
-В модуль main.py добавлен вызов (24) dd.calculate_rsi(stock_data)
-В модуле data_plotting.py добавлен код отрисовки графика показателя rsi
+В модуль data_download.py добавлена функция (84) calculate_rsi(data):
+В модуль main.py добавлен вызов (56) dd.calculate_rsi(stock_data)
+В модуле data_plotting.py (26) добавлен код отрисовки графика показателя rsi

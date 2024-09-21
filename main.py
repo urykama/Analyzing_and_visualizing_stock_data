@@ -24,7 +24,10 @@ def main():
 def main_02():
     print("Добро пожаловать в инструмент получения и построения графиков биржевых данных.")
     print(
-        "Вот несколько примеров биржевых тикеров, которые вы можете рассмотреть: AAPL (Apple Inc), GOOGL (Alphabet Inc), MSFT (Microsoft Corporation), AMZN (Amazon.com Inc), TSLA (Tesla Inc).")
+        """Вот несколько примеров биржевых тикеров, которые вы можете рассмотреть:
+        AAPL (Apple Inc),                   GOOGL (Alphabet Inc),
+        MSFT (Microsoft Corporation),       AMZN (Amazon.com Inc),
+        TSLA (Tesla Inc).""")
     print(
         "Общие периоды времени для данных о запасах включают: 1д, 5д, 1мес, 3мес, 6мес, 1г, 2г, 5г, 10л, с начала года, макс.")
 
@@ -44,16 +47,14 @@ def main_02():
     # Add moving average to the data
     stock_data = dd.add_moving_average(stock_data)
 
-    # Plot the data
-    # dplt.create_and_save_plot(stock_data, ticker, period)
-    # В модуль main.py добавлен вызов (24) dd.calculate_rsi(stock_data)
-    dd.calculate_rsi(stock_data)
-    filename = 'stock_data.csv'
     # filename = 'stock_data'
+    filename = 'stock_data.csv'
     dd.export_data_to_csv(stock_data, filename)
+
+    # В дата-фрейм добавляем данные технического индикатора RSI
+    # Add Relative Strength Index to the data
     stock_data['RSI'] = dd.calculate_rsi(stock_data)
-    # print(dd.calculate_rsi(stock_data))
-    print(stock_data)
+    # print(stock_data)
     # Plot the data
     dplt.create_and_save_plot(stock_data, ticker, period)
 
