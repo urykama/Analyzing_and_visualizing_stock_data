@@ -5,6 +5,17 @@ import yfinance as yf
 
 # pip install yfinance --upgrade --no-cache-dir
 
+def fetch_stock_data_not_using_period(ticker, start_date, end_date):
+    """
+    Получает исторические данные об акциях для указанного тикера и временного периода.
+    :param ticker:
+    :param start_date:
+    :param end_date:
+    :return: Возвращает DataFrame с данными.
+    """
+    # data = yf.download(ticker, start=start_date, end=end_date)
+    # print(data)
+    return yf.download(ticker, start=start_date, end=end_date)
 
 def fetch_stock_data(ticker, period='1mo'):
     """
@@ -15,6 +26,7 @@ def fetch_stock_data(ticker, period='1mo'):
     """
     stock = yf.Ticker(ticker)
     data = stock.history(period=period)
+    print(data)
     return data
 
 
